@@ -1,0 +1,98 @@
+Evaluation Results
+
+Current Time: 20250311-154716
+
+Work Directory: .
+
+Evaluation Checkpoint Path: 20250311-011551sotaMLP-4*256
+
+Configuration:
+arch:
+  activation: tanh
+  arch_name: Mlp
+  fourier_emb:
+    embed_dim: 256
+    embed_scale: 1
+  hidden_dim: 256
+  num_layers: 4
+  out_dim: 3
+  periodicity:
+    axis: !!python/tuple
+    - 1
+    - 2
+    period: !!python/tuple
+    - 1.0
+    - 1.0
+    trainable: !!python/tuple
+    - false
+    - false
+  reparam:
+    mean: 1.0
+    stddev: 0.1
+    type: weight_fact
+input_dim: 3
+logging:
+  log_errors: true
+  log_every_steps: 100
+  log_grads: false
+  log_losses: true
+  log_ntk: false
+  log_preds: false
+  log_weights: true
+mode: eval
+optim:
+  beta1: 0.9
+  beta2: 0.999
+  decay_rate: 0.9
+  decay_steps: 200
+  eps: 1.0e-08
+  grad_accum_steps: 0
+  learning_rate: 0.0001
+  optimizer: Adam
+saving:
+  num_keep_ckpts: 10
+  save_every_steps: 10000
+seed: 42
+training:
+  batch_size_per_device: 128
+  max_steps: 50000
+  num_time_windows: 10
+wandb:
+  name: 20250311-154709sotaMLP-4*256
+  project: PINN-NS_tori
+  tag: null
+weighting:
+  causal_tol: 1.0
+  init_weights:
+    p_ic: 1.0
+    rc: 1.0
+    rm: 1.0
+    ru: 1.0
+    rv: 1.0
+    u_ic: 1.0
+    v_ic: 1.0
+    w_ic: 1.0
+  momentum: 0.9
+  num_chunks: 16
+  scheme: grad_norm
+  update_every_steps: 1000
+  use_causal: true
+
+
+Number of time windows: 10
+
+Time window: 1, u error: 3.347e-01, v error: 2.731e-01, w error: 3.092e-01
+Time window: 2, u error: 3.216e-01, v error: 2.586e-01, w error: 2.959e-01
+Time window: 3, u error: 3.083e-01, v error: 2.438e-01, w error: 2.824e-01
+Time window: 4, u error: 2.948e-01, v error: 2.288e-01, w error: 2.687e-01
+Time window: 5, u error: 2.811e-01, v error: 2.135e-01, w error: 2.549e-01
+Time window: 6, u error: 2.672e-01, v error: 1.980e-01, w error: 2.410e-01
+Time window: 7, u error: 2.532e-01, v error: 1.822e-01, w error: 2.270e-01
+Time window: 8, u error: 2.389e-01, v error: 1.663e-01, w error: 2.130e-01
+Time window: 9, u error: 2.245e-01, v error: 1.501e-01, w error: 1.990e-01
+Time window: 10, u error: 2.100e-01, v error: 1.339e-01, w error: 1.851e-01
+
+L2 error of the full prediction of u: 2.100e-01
+L2 error of the full prediction of v: 1.339e-01
+L2 error of the full prediction of w: 1.851e-01
+L2 error of the full prediction of p: 1.549e+00

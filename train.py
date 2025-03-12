@@ -18,7 +18,7 @@ from jaxpi.utils import save_checkpoint
 
 import models
 from utils import get_dataset
-
+import yaml  # 导入 yaml 模块用于保存配置
 
 def train_one_window(config, workdir, model, res_sampler, u_ref, v_ref, w_ref, idx):
     step_offset = idx * config.training.max_steps
@@ -61,6 +61,11 @@ def train_one_window(config, workdir, model, res_sampler, u_ref, v_ref, w_ref, i
             ) == config.training.max_steps:
                 ckpt_path = os.path.join(os.getcwd(), config.wandb.name, "ckpt", "time_window_{}".format(idx + 1))
                 save_checkpoint(model.state, ckpt_path, keep=config.saving.num_keep_ckpts)
+                # 保存配置文件.yaml 到 ckpt_path
+                config_path = os.path.join(os.getcwd(), config.wandb.name, "config.yaml")
+                os.makedirs(os.path.dirname(config_path), exist_ok=True)
+                with open(config_path, 'w') as f:
+                    yaml.dump(config.to_dict(), f)
 
     return model
 
